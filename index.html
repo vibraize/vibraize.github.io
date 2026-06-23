@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VIBRAIZE DAILY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060016;
+    --bg-raised:#0a0224;
+    --magenta:#f700ff;
+    --hotpink:#ff0066;
+    --blue:#0432c8;
+    --steel:#08307b;
+    --mint:#00ffbf;
+    --violet:#d200fc;
+    --purple:#8c00ff;
+    --plum:#510b88;
+    --text:#e8e3f5;
+    --text-dim:#8a82ad;
+    --border:#1c1240;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html,body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body{
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(247,0,255,0.05), transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(4,50,200,0.08), transparent 45%);
+    padding-bottom:60px;
+  }
+
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+
+  /* ===== MASTHEAD ===== */
+  .masthead-bar{
+    border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg, rgba(247,0,255,0.04), transparent);
+    padding:18px 0 0;
+  }
+  .masthead-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    color:var(--text-dim);
+    padding-bottom:14px;
+  }
+  .masthead-top .blink{
+    color:var(--mint);
+    animation:blink 1.6s steps(2,jump-none) infinite;
+  }
+  @keyframes blink{50%{opacity:0.25;}}
+
+  .masthead-title{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:800;
+    font-size:42px;
+    letter-spacing:-0.01em;
+    line-height:1;
+    color:var(--text);
+    text-shadow:0 0 24px rgba(247,0,255,0.35);
+    padding-bottom:6px;
+  }
+  .masthead-title .accent{color:var(--magenta);}
+
+  .masthead-sub{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--steel-text);
+    color:#6f7fb8;
+    padding-bottom:16px;
+    border-bottom:1px dashed var(--border);
+    margin-bottom:0;
+  }
+  .masthead-sub span{display:flex;align-items:center;gap:6px;}
+  .dot{width:6px;height:6px;border-radius:50%;display:inline-block;}
+
+  /* ticker / top story */
+  .ticker{
+    margin:16px 0 0;
+    padding:12px 14px;
+    background:var(--bg-raised);
+    border:1px solid var(--plum);
+    border-left:3px solid var(--violet);
+    border-radius:4px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    line-height:1.6;
+    color:#d9c8f7;
+    margin-bottom:20px;
+  }
+  .ticker b{color:var(--violet);font-weight:700;}
+
+  /* ===== SECTION TABS ===== */
+  .section{margin-top:34px;}
+
+  .tab{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 16px 7px 12px;
+    border-radius:6px 6px 0 0;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    position:relative;
+    top:1px;
+  }
+  .tab .dot-icon{width:7px;height:7px;border-radius:50%;}
+
+  .section-body{
+    border-top:2px solid;
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent 60%);
+    padding:18px 0 4px;
+  }
+
+  /* color variants per section */
+  .c-jobs .tab{background:rgba(255,0,102,0.12);color:var(--hotpink);}
+  .c-jobs .tab .dot-icon{background:var(--hotpink);box-shadow:0 0 8px var(--hotpink);}
+  .c-jobs .section-body{border-color:var(--hotpink);}
+
+  .c-discuss .tab{background:rgba(4,50,200,0.16);color:#7c95ff;}
+  .c-discuss .tab .dot-icon{background:var(--blue);box-shadow:0 0 8px var(--blue);}
+  .c-discuss .section-body{border-color:var(--blue);}
+
+  .c-extjobs .tab{background:rgba(210,0,252,0.12);color:var(--violet);}
+  .c-extjobs .tab .dot-icon{background:var(--violet);box-shadow:0 0 8px var(--violet);}
+  .c-extjobs .section-body{border-color:var(--violet);}
+
+  .c-news .tab{background:rgba(0,255,191,0.10);color:var(--mint);}
+  .c-news .tab .dot-icon{background:var(--mint);box-shadow:0 0 8px var(--mint);}
+  .c-news .section-body{border-color:var(--mint);}
+
+  /* ===== ITEMS ===== */
+  .item{
+    padding:14px 4px;
+    border-bottom:1px solid var(--border);
+  }
+  .item:last-child{border-bottom:none;}
+
+  .item-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .item-title{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15.5px;
+    color:var(--text);
+    text-decoration:none;
+  }
+  .item-title:hover{text-decoration:underline;}
+
+  .item-meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--text-dim);
+    white-space:nowrap;
+  }
+
+  .item-tags{
+    display:flex;
+    gap:6px;
+    margin-top:6px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    padding:2px 7px;
+    border-radius:3px;
+    letter-spacing:0.03em;
+  }
+  .tag.remote{background:rgba(0,255,191,0.12);color:var(--mint);border:1px solid rgba(0,255,191,0.3);}
+  .tag.onsite{background:rgba(255,0,102,0.12);color:var(--hotpink);border:1px solid rgba(255,0,102,0.3);}
+  .tag.fit{background:rgba(140,0,255,0.14);color:#b78cff;border:1px solid rgba(140,0,255,0.3);}
+
+  .item-summary{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#a89fc9;
+    margin-top:5px;
+  }
+
+  .item-link{
+    display:inline-block;
+    margin-top:7px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--blue);
+    text-decoration:none;
+  }
+  .item-link:hover{color:#7c95ff;text-decoration:underline;}
+  .item-link::before{content:"> ";color:var(--text-dim);}
+
+  .empty-state{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--text-dim);
+    padding:16px 4px;
+    font-style:italic;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer{
+    margin-top:48px;
+    padding-top:18px;
+    border-top:1px dashed var(--border);
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--text-dim);
+    line-height:1.7;
+  }
+  .footer .accent{color:var(--steel);}
+
+  @media (max-width:480px){
+    .masthead-title{font-size:32px;}
+    .item-title{font-size:14.5px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead-bar">
+    <div class="masthead-top">
+      <span><span class="blink">●</span> LIVE FEED</span>
+      <span id="datetime">MON 06.22.26 — 09:05 MST</span>
+    </div>
+    <div class="masthead-title">VIBRAIZE <span class="accent">DAILY</span></div>
+    <div class="masthead-sub">
+      <span><span class="dot" style="background:var(--hotpink)"></span>TD FORUM</span>
+      <span><span class="dot" style="background:var(--violet)"></span>JOB WATCH</span>
+      <span><span class="dot" style="background:var(--mint)"></span>CREATIVE TECH</span>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <b>TOP STORY —</b> A rare Arizona immersive-media role surfaces on the I&amp;I HQ board (Yavapai College, Prescott) as Derivative debuts On-AI-R #1, its first AI-driven live music experiment built in TouchDesigner.
+  </div>
+
+  <!-- SECTION: TD FORUM JOB POSTINGS -->
+  <div class="section c-jobs">
+    <div class="tab"><span class="dot-icon"></span>TD Forum — Job Postings</div>
+    <div class="section-body">
+
+      <div class="empty-state">No new job postings in the last 24–48 hours. (Newest entry in the forum's Jobs &amp; Opportunities category is a June 20 workshop listing, not a job. The Derivative Job Board's freshest post — a Chicago visual-artist contract — is from June 15.)</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION: TD FORUM DISCUSSION -->
+  <div class="section c-discuss">
+    <div class="tab"><span class="dot-icon"></span>TD Forum — Discussion Highlights</div>
+    <div class="section-body">
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://forum.derivative.ca/t/widgets-modular-drop-in-widget-library-to-build-uis/998013">Widgets_Modular — Drop-In Widget Library to Build UIs</a>
+          <span class="item-meta">1D AGO</span>
+        </div>
+        <div class="item-summary">New community component release: a modular, paste-in library of prebuilt UI widgets for assembling TouchDesigner interfaces fast.</div>
+        <a class="item-link" href="https://forum.derivative.ca/t/widgets-modular-drop-in-widget-library-to-build-uis/998013">forum.derivative.ca/t/widgets-modular/998013</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://forum.derivative.ca/t/struggling-with-dmx-in-over-artnet/998145">Struggling with DMX IN over Art-Net</a>
+          <span class="item-meta">~3H AGO</span>
+        </div>
+        <div class="item-summary">Fresh troubleshooting thread on pulling DMX into TD over Art-Net — relevant if you route fixture/lighting data back into a patch.</div>
+        <a class="item-link" href="https://forum.derivative.ca/t/struggling-with-dmx-in-over-artnet/998145">forum.derivative.ca/t/struggling-with-dmx-in-over-artnet/998145</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://forum.derivative.ca/t/image-to-sound-wavetable-sonification-technique-free-tutorial/997023">Image to Sound: Wavetable Sonification Technique [Free Tutorial]</a>
+          <span class="item-meta">ACTIVE TODAY</span>
+        </div>
+        <div class="item-summary">Free technique walkthrough converting image data into audio via wavetable synthesis; still drawing replies this week.</div>
+        <a class="item-link" href="https://forum.derivative.ca/t/image-to-sound-wavetable-sonification-technique-free-tutorial/997023">forum.derivative.ca/t/image-to-sound-wavetable-sonification/997023</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://forum.derivative.ca/t/2025-32820-probe-from-the-palette-bugfix/997782">2025.32820 Probe (from the Palette) bugfix</a>
+          <span class="item-meta">1D AGO</span>
+        </div>
+        <div class="item-summary">Bugfix posted for the Palette's Probe utility on the 2025.32820 build — worth grabbing if Probe's been acting up.</div>
+        <a class="item-link" href="https://forum.derivative.ca/t/2025-32820-probe-from-the-palette-bugfix/997782">forum.derivative.ca/t/2025-32820-probe-bugfix/997782</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://forum.derivative.ca/t/best-phone-tripod-for-live-touchdesinger-work/997849">Best phone tripod for live TouchDesigner work</a>
+          <span class="item-meta">1D AGO</span>
+        </div>
+        <div class="item-summary">Hardware chatter on phone tripods and mounts for live camera-into-TD setups; practical rig picks for gigging.</div>
+        <a class="item-link" href="https://forum.derivative.ca/t/best-phone-tripod-for-live-touchdesinger-work/997849">forum.derivative.ca/t/best-phone-tripod-for-live-td-work/997849</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION: EXTERNAL JOB LISTINGS -->
+  <div class="section c-extjobs">
+    <div class="tab"><span class="dot-icon"></span>Job Listings — Creative Technologist</div>
+    <div class="section-body">
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/specialist-immersive-media-learning-technologies-2/">Specialist, Immersive Media &amp; Learning Technologies</a>
+          <span class="item-meta">YAVAPAI COLLEGE</span>
+        </div>
+        <div class="item-tags">
+          <span class="tag onsite">ON-SITE · AZ</span>
+          <span class="tag fit">IMMERSIVE / AV</span>
+        </div>
+        <div class="item-summary">Nearest in-state option: runs immersive media + XR learning-tech labs. On-site in Prescott, AZ (~100mi north of Phoenix metro).</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/specialist-immersive-media-learning-technologies-2/">jobs.interactiveimmersive.io/job/specialist-immersive-media-learning-technologies-2</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/motion-designer-creative-technologist-%E2%80%94-90s-product-film-paid/74336">Motion Designer / Creative Technologist — 90s Product Film (Paid)</a>
+          <span class="item-meta">SEITHAR (DEFENSE-TECH)</span>
+        </div>
+        <div class="item-tags">
+          <span class="tag remote">REMOTE · US</span>
+          <span class="tag fit">TOUCHDESIGNER</span>
+        </div>
+        <div class="item-summary">Paid remote gig for an abstract, generative 90-second product film visualizing an autonomous system — straight TD/generative fit.</div>
+        <a class="item-link" href="https://derivative.ca/job-post/motion-designer-creative-technologist-%E2%80%94-90s-product-film-paid/74336">derivative.ca/job-post/motion-designer-creative-technologist-90s-product-film</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/generative-motion-system-styling-brand/74605">Generative Motion System for Styling Brand</a>
+          <span class="item-meta">PRIVATE COMMISSION</span>
+        </div>
+        <div class="item-tags">
+          <span class="tag remote">REMOTE</span>
+          <span class="tag fit">TOUCHDESIGNER</span>
+        </div>
+        <div class="item-summary">Remote freelance build: a small library of reusable generative motion systems in TD for a styling brand's Instagram presence.</div>
+        <a class="item-link" href="https://derivative.ca/job-post/generative-motion-system-styling-brand/74605">derivative.ca/job-post/generative-motion-system-styling-brand/74605</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://www.indeed.com/q-creative-technologist-l-remote-jobs.html">Senior Creative Technologist — Remote Contract Roles</a>
+          <span class="item-meta">VIA INDEED · REMOTE-US</span>
+        </div>
+        <div class="item-tags">
+          <span class="tag remote">REMOTE · US</span>
+          <span class="tag fit">CREATIVE TECH</span>
+        </div>
+        <div class="item-summary">Several remote-US CT contracts live now (incl. a ~$93/hr design-system role); TD listed among the interactive skills employers want.</div>
+        <a class="item-link" href="https://www.indeed.com/q-creative-technologist-l-remote-jobs.html">indeed.com/q-creative-technologist-l-remote-jobs</a>
+      </div>
+
+      <div class="empty-state">No strictly Phoenix-metro on-site roles surfaced this run — the Prescott, AZ listing above is the closest in-state option.</div>
+
+    </div>
+  </div>
+
+  <!-- SECTION: CREATIVE TECH NEWS -->
+  <div class="section c-news">
+    <div class="tab"><span class="dot-icon"></span>Creative Tech News</div>
+    <div class="section-body">
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://forum.derivative.ca/t/experiment-on-ai-r-1-camille-complex-ai-driven-musical-performance-2025-10-07/998277">On-AI-R #1: Camille — Complex AI-Driven Musical Performance</a>
+          <span class="item-meta">DERIVATIVE</span>
+        </div>
+        <div class="item-summary">Derivative kicks off its "On-AI-R" experiment series with a complex AI-driven live musical performance built and run in TouchDesigner.</div>
+        <a class="item-link" href="https://forum.derivative.ca/t/experiment-on-ai-r-1-camille-complex-ai-driven-musical-performance-2025-10-07/998277">forum.derivative.ca/t/on-ai-r-1-camille/998277</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://www.avnetwork.com/news/massive-nyc-landmark-gets-spectacular-projection-mapping-experience">Moment Factory reimagines an NYC landmark as a 360° projection environment</a>
+          <span class="item-meta">AVNETWORK</span>
+        </div>
+        <div class="item-summary">Montreal's Moment Factory (with Matrox Video) turns an iconic New York landmark into a full 360° multimedia space — large-scale mapping done right.</div>
+        <a class="item-link" href="https://www.avnetwork.com/news/massive-nyc-landmark-gets-spectacular-projection-mapping-experience">avnetwork.com/news/massive-nyc-landmark-projection-mapping</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/community-post/tutorial/generative-liquid-paintings-touchdesigner/68643">Generative Liquid Paintings in TouchDesigner (Shadertoy → TD)</a>
+          <span class="item-meta">DERIVATIVE / IIHQ</span>
+        </div>
+        <div class="item-summary">Clean GLSL-in-TD primer: porting a Shadertoy fluid-sim shader into TouchDesigner to make flowing generative liquid-paint visuals.</div>
+        <a class="item-link" href="https://derivative.ca/community-post/tutorial/generative-liquid-paintings-touchdesigner/68643">derivative.ca/community-post/tutorial/generative-liquid-paintings-touchdesigner</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://forum.derivative.ca/t/tdlidar-your-iphone-as-a-depth-camera-3d-scanner-and-sensor-rig-for-touchdesigner-v8-0-0-2026-06-08/995967">TDLidar v8.0.0 — iPhone as a depth camera &amp; sensor rig for TD</a>
+          <span class="item-meta">COMMUNITY</span>
+        </div>
+        <div class="item-summary">Updated tool turns an iPhone into a depth camera, 3D scanner and sensor rig for TouchDesigner — cheap, portable sensing for installs.</div>
+        <a class="item-link" href="https://forum.derivative.ca/t/tdlidar-your-iphone-as-a-depth-camera-3d-scanner-and-sensor-rig-for-touchdesigner-v8-0-0-2026-06-08/995967">forum.derivative.ca/t/tdlidar-v8-0-0/995967</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://russellsapalmer.medium.com/the-top-ai-video-models-entering-2026-c9997cb7271c">AI video models keep leaping into mid-2026</a>
+          <span class="item-meta">ROUNDUP</span>
+        </div>
+        <div class="item-summary">New xAI Grok Imagine, Pika and peers push real-time, physics-aware generation toward render quality — more raw feedstock for AI-driven visual pipelines.</div>
+        <a class="item-link" href="https://russellsapalmer.medium.com/the-top-ai-video-models-entering-2026-c9997cb7271c">medium.com/top-ai-video-models-entering-2026</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://interactiveimmersive.io/blog/touchdesigner-resources/2026-touchdesigner-community-tools/">2026 TouchDesigner Community Tools roundup</a>
+          <span class="item-meta">I&amp;I HQ</span>
+        </div>
+        <div class="item-summary">Interactive &amp; Immersive HQ's running list of the best 2026 community-built TD tools, components and palettes worth installing.</div>
+        <a class="item-link" href="https://interactiveimmersive.io/blog/touchdesigner-resources/2026-touchdesigner-community-tools/">interactiveimmersive.io/blog/2026-touchdesigner-community-tools</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    Generated <span class="accent">Mon Jun 22 2026, 09:05 MST</span>. Sources checked: <span class="accent">forum.derivative.ca (Jobs &amp; Opportunities + latest discussion), derivative.ca/job-board, Interactive &amp; Immersive HQ jobs, AVNetwork, Derivative community posts, and general web search</span>.<br>
+    VIBRAIZE DAILY — built for Malachi / Vibraize Visuals.
+  </div>
+
+</div>
+</body>
+</html>
