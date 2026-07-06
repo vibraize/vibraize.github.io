@@ -1,0 +1,95 @@
+{
+  "_comment": "SITE copy of feeds.json for the PUBLIC vibraize.github.io repo. The Discord webhook is intentionally NOT included here — never commit your webhook to a public repo. 'category':'jobs' feeds go into the Job Listings section; everything else is news.",
+  "feeds": [
+    {
+      "name": "Derivative Job Board",
+      "url": "https://rss.app/feeds/tqO2hisvEewEDxzq.xml",
+      "category": "jobs",
+      "enabled": true
+    },
+    {
+      "name": "Interactive & Immersive HQ Jobs",
+      "url": "https://jobs.interactiveimmersive.io/feed/",
+      "category": "jobs",
+      "enabled": true
+    },
+    {
+      "name": "Prosthetic Knowledge",
+      "url": "https://prostheticknowledge.tumblr.com/rss",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Waxy",
+      "url": "https://waxy.org/feed/",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Interactive Immersive Blog",
+      "url": "https://rss.app/feeds/AlsmROle56NSTns9.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "MA Lighting News",
+      "url": "https://rss.app/feeds/zAoQIZNxYuV2NdCl.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Neuro.Studio - The Synapse",
+      "url": "https://rss.app/feeds/GePDveYZfPZLR7hb.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "City of Awe",
+      "url": "https://rss.app/feeds/QvL3ksS1EOkSyLWP.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "OnInOff News",
+      "url": "https://rss.app/feeds/5H8EsTS4MJX4Xvoa.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Derivative Showcase",
+      "url": "https://rss.app/feeds/dsj1HMgnqpJ7Yc54.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Resolume Blog",
+      "url": "https://rss.app/feeds/vxyBK7PrF1i7oe9O.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Generative Media Club",
+      "url": "https://generativemedia.club/feed/",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "vvvv",
+      "url": "https://vvvv.org/community/index.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Creative Tech News",
+      "url": "https://rss.app/feeds/QARCnFROSwFytwRJ.xml",
+      "category": "news",
+      "enabled": true
+    },
+    {
+      "name": "Live Design News",
+      "url": "https://rss.app/feeds/ttP0DcVBdObWaWMk.xml",
+      "category": "news",
+      "enabled": true
+    }
+  ]
+}
