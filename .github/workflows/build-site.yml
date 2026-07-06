@@ -1,0 +1,48 @@
+name: Build Site
+
+# Rebuilds index.html from the RSS feeds and commits it, so GitHub Pages
+# serves a fresh page. Runs about every 20 minutes, plus on-demand.
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch: {}
+
+# Allow the built-in GITHUB_TOKEN to push the regenerated index.html.
+permissions:
+  contents: write
+
+# If a run is still going when the next is due, let the newer one wait
+# rather than overlap.
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build index.html
+        run: python build_site.py
+
+      - name: Commit updated site
+        run: |
+          git config user.name "vibraize-site-bot"
+          git config user.email "actions@github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-update: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
