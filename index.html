@@ -223,6 +223,24 @@
     font-style:italic;
   }
 
+  /* ===== NEWS THUMBNAILS (added for the feed layout) ===== */
+  .item.news{display:flex;gap:14px;align-items:flex-start;}
+  .item.news .item-body{flex:1;min-width:0;}
+  .item-thumb{
+    width:132px;height:88px;flex:0 0 132px;
+    border-radius:5px;
+    border:1px solid var(--border);
+    object-fit:cover;
+    background:var(--bg-raised);
+    display:block;
+  }
+  .item-thumb.placeholder{
+    background:
+      radial-gradient(circle at 28% 24%, rgba(247,0,255,0.28), transparent 60%),
+      radial-gradient(circle at 76% 82%, rgba(0,255,191,0.20), transparent 55%),
+      var(--bg-raised);
+  }
+
   /* ===== FOOTER ===== */
   .footer{
     margin-top:48px;
@@ -238,6 +256,7 @@
   @media (max-width:480px){
     .masthead-title{font-size:32px;}
     .item-title{font-size:14.5px;}
+    .item-thumb{width:96px;height:66px;flex-basis:96px;}
   }
 </style>
 </head>
@@ -247,210 +266,328 @@
   <div class="masthead-bar">
     <div class="masthead-top">
       <span><span class="blink">●</span> LIVE FEED</span>
-      <span id="datetime">MON 07.06.26 — 13:43 MST</span>
+      <span id="datetime">MON 07.06.26 — 15:50 MST</span>
     </div>
     <div class="masthead-title">VIBRAIZE <span class="accent">DAILY</span></div>
     <div class="masthead-sub">
-      <span><span class="dot" style="background:var(--hotpink)"></span>TD FORUM</span>
       <span><span class="dot" style="background:var(--violet)"></span>JOB WATCH</span>
-      <span><span class="dot" style="background:var(--mint)"></span>CREATIVE TECH</span>
+      <span><span class="dot" style="background:var(--mint)"></span>LIVE NEWS FEED</span>
     </div>
   </div>
 
   <div class="ticker">
-    <b>TOP STORY —</b> At AIART 2026 in Bangkok this week, creative technologist Jenn Leung is piping TouchDesigner blob-tracking data into a living-neuron biocomputer (Cortical Labs&rsquo; CL1) to drive real-time Unreal Engine visuals &mdash; one of the stranger, more compelling TD use-cases we&rsquo;ve seen in a while.
+    <b>TOP STORY —</b> Stage Electrics Partnership Names Pete White As Managing Director <span style="color:var(--text-dim)">(via Live Design News)</span>
   </div>
 
-  <!-- SECTION: TD FORUM JOB POSTINGS -->
-  <div class="section c-jobs">
-    <div class="tab"><span class="dot-icon"></span>TD Forum — Job Postings</div>
-    <div class="section-body">
-
-      <div class="empty-state">Still nothing new on the forum's Jobs &amp; Opportunities category (quiet since Jun 20) or the Derivative job board in the last 24&ndash;48 hours &mdash; the same Hovercraft, Immerse Studio and Kizuna Media roles tracked below in Job Listings remain the freshest opportunities in circulation.</div>
-    </div>
-  </div>
-
-  <!-- SECTION: TD FORUM DISCUSSION -->
-  <div class="section c-discuss">
-    <div class="tab"><span class="dot-icon"></span>TD Forum — Discussion Highlights</div>
-    <div class="section-body">
-
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://forum.derivative.ca/t/hokuyo-lidar-connection-issues/1000884">Hokuyo Lidar connection issues</a>
-          <span class="item-meta">~1D AGO</span>
-        </div>
-        <div class="item-summary">Fresh hardware thread on getting a Hokuyo LiDAR unit talking to TD &mdash; posted just over a day ago with no replies yet, worth a bookmark if you're wiring in laser rangefinders.</div>
-        <a class="item-link" href="https://forum.derivative.ca/t/hokuyo-lidar-connection-issues/1000884">forum.derivative.ca/t/hokuyo-lidar-connection-issues/1000884</a>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://forum.derivative.ca/t/equirectangular-shader-setup-for-a-mesh/1000620">Equirectangular shader setup for a mesh</a>
-          <span class="item-meta">GLSL &middot; ~3D AGO</span>
-        </div>
-        <div class="item-summary">New GLSL thread on wiring an equirectangular environment map onto a mesh via custom shader &mdash; texture/materials setup questions, no replies yet.</div>
-        <a class="item-link" href="https://forum.derivative.ca/t/equirectangular-shader-setup-for-a-mesh/1000620">forum.derivative.ca/t/equirectangular-shader-setup-for-a-mesh/1000620</a>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://forum.derivative.ca/t/touchdesigner-2025-32820-exits-after-1-2-minutes-windbg-stops-at-ntterminateprocess-exitprocess/1000554">TD 2025.32820 exits after ~1&ndash;2 minutes; WinDbg stops at NtTerminateProcess</a>
-          <span class="item-meta">DEBUGGING &middot; ~3D AGO</span>
-        </div>
-        <div class="item-summary">Deep-dive crash report: poster traced a silent 1&ndash;2 minute exit all the way down with WinDbg to NtTerminateProcess/ExitProcess &mdash; a solid reference if you're chasing mystery shutdowns.</div>
-        <a class="item-link" href="https://forum.derivative.ca/t/touchdesigner-2025-32820-exits-after-1-2-minutes-windbg-stops-at-ntterminateprocess-exitprocess/1000554">forum.derivative.ca/t/touchdesigner-2025-32820-exits-after-1-2-minutes/1000554</a>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://forum.derivative.ca/t/dmx-pops-routing-table-easier-fixture-ip-support/1000323">DMX POPs Routing Table Easier Fixture IP Support</a>
-          <span class="item-meta">DMX &middot; ~4D AGO</span>
-        </div>
-        <div class="item-summary">Feature discussion pushing for an easier way to manage fixture IPs in the DMX POP's routing table &mdash; relevant if you're wrangling large DMX/Art-Net universes.</div>
-        <a class="item-link" href="https://forum.derivative.ca/t/dmx-pops-routing-table-easier-fixture-ip-support/1000323">forum.derivative.ca/t/dmx-pops-routing-table-easier-fixture-ip-support/1000323</a>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://forum.derivative.ca/t/render-top-shows-nothing-checkerboard-despite-exhaustive-verification/1000556">Render TOP shows nothing (checkerboard) despite exhaustive verification</a>
-          <span class="item-meta">TROUBLESHOOTING &middot; ~3D AGO</span>
-        </div>
-        <div class="item-summary">Render TOP outputs only a checkerboard despite the poster verifying camera, geometry and materials step by step &mdash; active thread with an example image attached.</div>
-        <a class="item-link" href="https://forum.derivative.ca/t/render-top-shows-nothing-checkerboard-despite-exhaustive-verification/1000556">forum.derivative.ca/t/render-top-shows-nothing-checkerboard/1000556</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION: EXTERNAL JOB LISTINGS -->
+  <!-- SECTION: JOB LISTINGS -->
   <div class="section c-extjobs">
     <div class="tab"><span class="dot-icon"></span>Job Listings — Creative Technologist</div>
     <div class="section-body">
 
       <div class="item">
         <div class="item-head">
-          <a class="item-title" href="https://job-boards.greenhouse.io/hovercraft/jobs/4281732009">Creative Technologist (Freelance)</a>
-          <span class="item-meta">HOVERCRAFT</span>
-        </div>
-        <div class="item-tags">
-          <span class="tag remote">REMOTE · US</span>
-          <span class="tag fit">TOUCHDESIGNER</span>
-        </div>
-        <div class="item-summary">Still open &mdash; remote-first studio wants freelance Creative Technologists across WebGL/Three.js/GLSL and TouchDesigner for interactive systems, hardware integration and installations.</div>
-        <a class="item-link" href="https://job-boards.greenhouse.io/hovercraft/jobs/4281732009">job-boards.greenhouse.io/hovercraft/jobs/4281732009</a>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://job-boards.greenhouse.io/hovercraft/jobs/4281110009">Creative Technologist</a>
-          <span class="item-meta">HOVERCRAFT</span>
-        </div>
-        <div class="item-tags">
-          <span class="tag remote">REMOTE · US</span>
-          <span class="tag fit">CREATIVE TECH</span>
-        </div>
-        <div class="item-summary">Remote-first studio (PT/MT hours) hiring a Creative Technologist to build interactive experiences, real-time graphics systems and physical installations &mdash; $120K&ndash;$140K, 1099 contract.</div>
-        <a class="item-link" href="https://job-boards.greenhouse.io/hovercraft/jobs/4281110009">job-boards.greenhouse.io/hovercraft/jobs/4281110009</a>
-      </div>
-
-      <div class="item">
-        <div class="item-head">
           <a class="item-title" href="https://derivative.ca/job-post/touchdesigner-developer-position/74897">TouchDesigner Developer Position</a>
-          <span class="item-meta">IMMERSE STUDIO</span>
+          <span class="item-meta">Derivative Job Board</span>
         </div>
-        <div class="item-tags">
-          <span class="tag remote">REMOTE · US</span>
-          <span class="tag fit">TOUCHDESIGNER</span>
-        </div>
-        <div class="item-summary">LA studio building interactive installations is hiring a primarily-remote TD developer (LA on-site optional) for a contract-to-extend role focused on GLSL compute shaders, raymarching/SDFs and Python tooling.</div>
-        <a class="item-link" href="https://derivative.ca/job-post/touchdesigner-developer-position/74897">derivative.ca/job-post/touchdesigner-developer-position</a>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/touchdesigner-developer-position/74897">derivative.ca</a>
       </div>
 
       <div class="item">
         <div class="item-head">
-          <a class="item-title" href="https://derivative.ca/job-post/freelance-touchdesigner-artist-%E2%80%94-music-video-post-stage-visuals/74454">Freelance TouchDesigner Artist &mdash; Music Video Post &amp; Stage Visuals</a>
-          <span class="item-meta">KIZUNA MEDIA (DC)</span>
+          <a class="item-title" href="https://derivative.ca/job-post/touchdesigner-and-led-wall-trouble-shooting-near-houston/74890">Touchdesigner and led wall trouble shooting near Houston</a>
+          <span class="item-meta">Derivative Job Board</span>
         </div>
-        <div class="item-tags">
-          <span class="tag remote">REMOTE · US</span>
-          <span class="tag fit">TOUCHDESIGNER</span>
-        </div>
-        <div class="item-summary">DC content agency still building a roster of freelance TD artists for music videos and live-show visuals &mdash; high-contrast, cinematic, underground aesthetic.</div>
-        <a class="item-link" href="https://derivative.ca/job-post/freelance-touchdesigner-artist-%E2%80%94-music-video-post-stage-visuals/74454">derivative.ca/job-post/freelance-touchdesigner-artist-music-video-post-stage-visuals</a>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/touchdesigner-and-led-wall-trouble-shooting-near-houston/74890">derivative.ca</a>
       </div>
 
       <div class="item">
         <div class="item-head">
-          <a class="item-title" href="https://marshmallowlaserfeast.notion.site/Jobs-Board-2f5dc10eb1ad4cf58a60f937498325bc">Marshmallow Laser Feast &mdash; Systems &amp; Infrastructure Lead</a>
-          <span class="item-meta">MLF JOBS BOARD</span>
+          <a class="item-title" href="https://derivative.ca/job-post/multidisciplinary-visual-artist-3d-animation-live-visuals-contract-freelance/74804">Multidisciplinary Visual Artist - 3D, Animation &amp; Live Visuals</a>
+          <span class="item-meta">Derivative Job Board</span>
         </div>
-        <div class="item-tags">
-          <span class="tag onsite">ON-SITE · LONDON</span>
-          <span class="tag fit">IMMERSIVE STUDIO</span>
-        </div>
-        <div class="item-summary">Tracked board &mdash; MLF&rsquo;s one current opening: a Systems &amp; Infrastructure Lead at the London immersive/laser art collective. Board was JS-locked again this run, so this carries over verbatim from yesterday; nothing confirmed new.</div>
-        <a class="item-link" href="https://marshmallowlaserfeast.notion.site/Jobs-Board-2f5dc10eb1ad4cf58a60f937498325bc">marshmallowlaserfeast.notion.site/Jobs-Board</a>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/multidisciplinary-visual-artist-3d-animation-live-visuals-contract-freelance/74804">derivative.ca</a>
       </div>
 
-      <div class="empty-state">No Phoenix-metro on-site creative-tech roles surfaced this run either &mdash; Phoenix-area postings are still generic AV/Crestron-programmer and graphic-design work, not creative-technologist fits; every qualifying role found today remains remote-US.</div>
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/el-perro-fan-theories-live/74652">El Perro &quot;Fan Theories&quot; Live</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/el-perro-fan-theories-live/74652">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/generative-motion-system-styling-brand/74605">Generative Motion System for Styling brand</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/generative-motion-system-styling-brand/74605">derivative.ca</a>
+      </div>
+
     </div>
   </div>
 
-  <!-- SECTION: CREATIVE TECH NEWS -->
+  <!-- SECTION: NEWS FEED -->
   <div class="section c-news">
-    <div class="tab"><span class="dot-icon"></span>Creative Tech News</div>
+    <div class="tab"><span class="dot-icon"></span>Creative Tech News — Latest 20</div>
     <div class="section-body">
 
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://aiart2026.github.io/">TouchDesigner meets a living-neuron biocomputer at AIART 2026</a>
-          <span class="item-meta">AIART2026 / IEEE ICME</span>
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/petewhite.png?VersionId=JaPgQkLzuPpebnSdt1FXkhBc0c.Aj68V" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/stage-electrics-partnership-names-pete-white-managing-director">Stage Electrics Partnership Names Pete White As Managing Director</a>
+            <span class="item-meta">Live Design News · 6H AGO</span>
+          </div>
+          <div class="item-summary">Stage Electrics Group has announced the appointment of Pete White a | This appointment is strengthened further by the creation of a new Senior…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/stage-electrics-partnership-names-pete-white-managing-director">livedesignonline.com</a>
         </div>
-        <div class="item-summary">At this week's Bangkok gallery and keynote, creative technologist Jenn Leung feeds TD blob-tracking data into Cortical Labs&rsquo; CL1 biocomputer, whose live neural spikes stream back into Unreal Engine as generative visuals.</div>
-        <a class="item-link" href="https://aiart2026.github.io/">aiart2026.github.io</a>
       </div>
 
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://www.avinteractive.com/territories-news/europe/sharp-provides-projection-tech-for-louvres-cinema-festival-01-07-2026/">Sharp brings native 4K laser projection to the Louvre's open-air cinema festival</a>
-          <span class="item-meta">AV MAGAZINE</span>
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://aftermath.site/xbox-layoffs-july-2026/">Double Fine is independent once again as Xbox lays off 3,200</a>
+            <span class="item-meta">Waxy · 8H AGO</span>
+          </div>
+          <div class="item-summary">the best outcome for the studio, I hope we get another documentary out of it #</div>
+          <a class="item-link" href="https://aftermath.site/xbox-layoffs-july-2026/">aftermath.site</a>
         </div>
-        <div class="item-summary">Festival Cin&eacute;ma Paradiso Louvre ran a Sharp NC-3543 RB laser projector for four nights of open-air screenings in the museum's courtyard, drawing over 10,000 guests.</div>
-        <a class="item-link" href="https://www.avinteractive.com/territories-news/europe/sharp-provides-projection-tech-for-louvres-cinema-festival-01-07-2026/">avinteractive.com/sharp-louvre-cinema-festival</a>
       </div>
 
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://www.edmtunes.com/2026/05/amelie-lens-to-headline-roman-quarry-croatia/">Laser projection mapping debuts on a 2,000-year-old Roman quarry</a>
-          <span class="item-meta">EDMTUNES</span>
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/tsdca.png?VersionId=4BlUbYju746zhlxJE_yG91r39yjPZw4i" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/annual-theatrical-sound-designers-and-composers-association-event-take-place-july-july-25-27">Annual Theatrical Sound Designers And Composers Association Event To Take Place July 25-27 In Chicago</a>
+            <span class="item-meta">Live Design News · 11H AGO</span>
+          </div>
+          <div class="item-summary">The 11th annual membership meeting of Theatrical Sound Designers and Composers (TSDCA) will take place in Chicago, July 25-27. | Three days of…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/annual-theatrical-sound-designers-and-composers-association-event-take-place-july-july-25-27">livedesignonline.com</a>
         </div>
-        <div class="item-summary">BSH Events wrapped Amelie Lens's July 3 Cave Romane show with a new laser projection-mapping concept built to interact with the quarry's 50-metre stone walls.</div>
-        <a class="item-link" href="https://www.edmtunes.com/2026/05/amelie-lens-to-headline-roman-quarry-croatia/">edmtunes.com/amelie-lens-roman-quarry-croatia</a>
       </div>
 
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://manual.notch.one/2026.1/en/docs/whats-new/release-notes/1-0-0/">Notch ships 2026.1 with large-network performance fixes</a>
-          <span class="item-meta">NOTCH</span>
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/followme_3.png?VersionId=ZgwfyYevgvoUWyCIIGu0MMDSydhKsZLe" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/follow-me-performer-tracking-vital-wu-tang-clans-final-chamber-tour">Follow-Me Performer Tracking Vital To Wu-Tang Clan’s The Final Chamber Tour</a>
+            <span class="item-meta">Live Design News · 13H AGO</span>
+          </div>
+          <div class="item-summary">Hip-hop legends Wu-Tang Clan are currently in the midst of a sweeping global farewell tour titled Wu-Tang Forever: The Final Chamber, a mammoth run…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/follow-me-performer-tracking-vital-wu-tang-clans-final-chamber-tour">livedesignonline.com</a>
         </div>
-        <div class="item-summary">Latest build improves performance on large modifier networks and patches rendering, colour-space, asset and video-workflow bugs &mdash; worth the update if you run Notch blocks alongside TD.</div>
-        <a class="item-link" href="https://manual.notch.one/2026.1/en/docs/whats-new/release-notes/1-0-0/">manual.notch.one/2026.1/release-notes</a>
       </div>
 
-      <div class="item">
-        <div class="item-head">
-          <a class="item-title" href="https://derivative.ca/community-post/tutorial/glsl-shaders-generative-visuals-touchdesigner-claude-code/74828">Building Mandelbulb fractals and raymarchers with TD + Claude Code</a>
-          <span class="item-meta">DERIVATIVE.CA</span>
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://manuelmoreale.com/interview/andy-baio">People and Blogs interviewed me</a>
+            <span class="item-meta">Waxy · 1D AGO</span>
+          </div>
+          <div class="item-summary">thanks to Manu for asking me to be the second-to-last blogger in his interview series #</div>
+          <a class="item-link" href="https://manuelmoreale.com/interview/andy-baio">manuelmoreale.com</a>
         </div>
-        <div class="item-summary">Interactive &amp; Immersive HQ's Elburz posts a tutorial pairing a TouchDesigner GLSL skills repo with Claude Code to build a Mandelbulb fractal and raymarcher from scratch.</div>
-        <a class="item-link" href="https://derivative.ca/community-post/tutorial/glsl-shaders-generative-visuals-touchdesigner-claude-code/74828">derivative.ca/community-post/glsl-shaders-generative-visuals-touchdesigner-claude-code</a>
       </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.theverge.com/tech/959848/bittorrent-story-25-years-piracy">The Verge on 25 years of BitTorrent</a>
+            <span class="item-meta">Waxy · 1D AGO</span>
+          </div>
+          <div class="item-summary">seems like the company failed precisely because the protocol was so successful in achieving its goals #</div>
+          <a class="item-link" href="https://www.theverge.com/tech/959848/bittorrent-story-25-years-piracy">theverge.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/2026-07/robe_jakov_jozinovic_zagreb_arena_jakov_zagreb_1.jpg?VersionId=79aR5xzcZjwP47oXalvp6tUo9dFrv.5l" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/first-robe-gigapointes-rock-southeastern-europe-jakov-jozinovic-zagreb-shows">First Robe GigaPointes Rock Southeastern Europe At Jakov Jozinović Zagreb Shows</a>
+            <span class="item-meta">Live Design News · 3D AGO</span>
+          </div>
+          <div class="item-summary">Mojo Rental Southeast Europe from Croatia were the first company in the Balkans to invest in Robe’s new GigaPointe laser-phosphor source multipurpose…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/first-robe-gigapointes-rock-southeastern-europe-jakov-jozinovic-zagreb-shows">livedesignonline.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.malighting.com/news/article/the-grandma3-onpc-dmx-key-starter-1504/">The grandMA3 onPC DMX-key starter</a>
+            <span class="item-meta">MA Lighting News · 3D AGO</span>
+          </div>
+          <div class="item-summary">One key. Ready for you to start.</div>
+          <a class="item-link" href="https://www.malighting.com/news/article/the-grandma3-onpc-dmx-key-starter-1504/">malighting.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/davidbarton.png?VersionId=XQuAoxwYAji57KL.YhKWBp5aZbXHKue3" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/imag-appoints-david-barton-operations-manager-support-next-phase-growth">iMAG Appoints David Barton As Operations Manager To Support Next Phase Of Growth</a>
+            <span class="item-meta">Live Design News · 4D AGO</span>
+          </div>
+          <div class="item-summary">As iMAG continues to grow, we&#x27;re investing in the people who will help us deliver even more for our clients. | David brings almost two decades of…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/imag-appoints-david-barton-operations-manager-support-next-phase-growth">livedesignonline.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/06/images-2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/unreal-engine/whats-new-in-unreal-engine-5-8/">What&#x27;s New in Unreal Engine 5.8 - The Interactive</a>
+            <span class="item-meta">Interactive Immersive Blog · 4D AGO</span>
+          </div>
+          <div class="item-summary">If you haven&#x27;t heard already, our favorite AAA real-time renderer just dropped a new update with all sorts of goodies. So I&#x27;m gonna go through some…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/unreal-engine/whats-new-in-unreal-engine-5-8/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/markus-zellner.png?VersionId=jYPhygHWohACkT0eYid0X79zFRMqPIgQ" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/markus-zellner-joins-analog-way-emea-team">Markus Zellner Joins Analog Way EMEA Team</a>
+            <span class="item-meta">Live Design News · 4D AGO</span>
+          </div>
+          <div class="item-summary">Analog Way is pleased to announce the appointment of Markus Zellner as Presales and Commissioning Manager for the EMEA region. | Analog Way is…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/markus-zellner-joins-analog-way-emea-team">livedesignonline.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/the_lost_boys_lj_benet_ali_louis_bourzgui_brian_flores_dean_maupin_sean_grandillo_photo_by_matthew_murphy_2026.jpg?VersionId=_QuWhEl_7agZZCVD0Uo64ijhxVX8wLCo" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/flying-high-broadway-behind-buzz-about-dane-laffreys-award-winning-scenic-design-lost-boys">Flying High On Broadway: Behind The Buzz About Dane Laffrey’s Award-Winning Scenic Design For The Lost Boys</a>
+            <span class="item-meta">Live Design News · 4D AGO</span>
+          </div>
+          <div class="item-summary">The Lost Boys, the new Broadway musical based on the 80s cult film about teenage vampires, scored twelve 2026 Tony nominations – including for Best…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/flying-high-broadway-behind-buzz-about-dane-laffreys-award-winning-scenic-design-lost-boys">livedesignonline.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/74_guetta_live_photo_courtesy_of_stijnepiccinema_epiccinema.png?VersionId=mSS2JGOAkk4w8Xn3gGgm4zhNnwYuiRdf" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/red-powers-epic-cinemas-multi-camera-capture-david-guettas-ultimate-monolith-show">RED Powers Epic Cinema’s Multi-Camera Capture Of David Guetta’s “The Ultimate Monolith Show”</a>
+            <span class="item-meta">Live Design News · 4D AGO</span>
+          </div>
+          <div class="item-summary">FOOTHILL RANCH, CA — RED Digital Cinema® supported Epic Cinema and acclaimed director Stijn Verlinde in capturing superstar DJ David Guetta&#x27;s &quot;The…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/red-powers-epic-cinemas-multi-camera-capture-david-guettas-ultimate-monolith-show">livedesignonline.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://qtxasset.com/quartz/qcloud4/media/image/foster_the_people_photo_by_miranda_mcdonald_3.jpg?VersionId=BSQqAv8ywlLA0R13BPy1fCPI8qZ0ZC5O" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.livedesignonline.com/news/shepherd-lowrey-and-cour-design-bring-foster-peoples-coachella-show-life-elation-rayzor-blade">Shepherd Lowrey And Cour Design Bring Foster The People’s Coachella Show To Life With Elation Rayzor Blade</a>
+            <span class="item-meta">Live Design News · 4D AGO</span>
+          </div>
+          <div class="item-summary">Over both weekends of this year’s Coachella festival, audiences were treated to a visually captivating journey as indie pop band Foster the People…</div>
+          <a class="item-link" href="https://www.livedesignonline.com/news/shepherd-lowrey-and-cour-design-bring-foster-peoples-coachella-show-life-elation-rayzor-blade">livedesignonline.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.malighting.com/news/article/grandma3-shines-at-eurovision-2026-1506/">grandMA3 Shines at Eurovision 2026</a>
+            <span class="item-meta">MA Lighting News · 4D AGO</span>
+          </div>
+          <div class="item-summary">Powered by 11 grandMA3 consoles and over 3,000 fixtures, Eurovision 2026 celebrated its 70th anniversary with a spectacular lighting production</div>
+          <a class="item-link" href="https://www.malighting.com/news/article/grandma3-shines-at-eurovision-2026-1506/">malighting.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.youtube.com/watch?v=bwIFDv5pHS0">Hank Green interviews Ze Frank</a>
+            <span class="item-meta">Waxy · 5D AGO</span>
+          </div>
+          <div class="item-summary">as a huge fan of The Show , I’ve been anxiously waiting for this episode of Hank’s new podcast #</div>
+          <a class="item-link" href="https://www.youtube.com/watch?v=bwIFDv5pHS0">youtube.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://www.youtube.com/watch?v=XGWxJaZpDXo">Horrorfan1’s Guide to Horror</a>
+            <span class="item-meta">Waxy · 6D AGO</span>
+          </div>
+          <div class="item-summary">another brilliant guide to the movies by internet cinephile Neil Cicierega #</div>
+          <a class="item-link" href="https://www.youtube.com/watch?v=XGWxJaZpDXo">youtube.com</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://s.hdnux.com/photos/01/66/54/47/31115729/3/rawImage.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://illuminate.org/press/s-f-beaming-with-pride-with-the-gaysers-worlds-largest-rainbow-flag/">SF beaming with Pride with the ‘Gaysers,’ world’s largest rainbow flag</a>
+            <span class="item-meta">City of Awe · 8D AGO</span>
+          </div>
+          <div class="item-summary">A 4.1-mile laser is lighting up Market Street, while the giant Pink Triangle on Twin Peaks is glowing brightly.</div>
+          <a class="item-link" href="https://illuminate.org/press/s-f-beaming-with-pride-with-the-gaysers-worlds-largest-rainbow-flag/">illuminate.org</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://generativemedia.club/wp-content/uploads/2026/06/Jimena-Buena-Vida-JimenaBuenaVida_Mockup2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://generativemedia.club/blog/jimena-buena-vida/">Artist of The Week #40: Jimena Buena Vida</a>
+            <span class="item-meta">Generative Media Club · 8D AGO</span>
+          </div>
+          <div class="item-summary">I make art with code, and I don’t begin with a clear plan for what the final piece should look like. I usually start with a pattern, a movement, or a…</div>
+          <a class="item-link" href="https://generativemedia.club/blog/jimena-buena-vida/">generativemedia.club</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://hl2.slqnt.dev/">Half-Life 2 in the browser</a>
+            <span class="item-meta">Waxy · 10D AGO</span>
+          </div>
+          <div class="item-summary">a quirky WebGL port by a high school student, check it out before it disappears via Web Curios #</div>
+          <a class="item-link" href="https://hl2.slqnt.dev/">hl2.slqnt.dev</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <div class="footer">
-    Generated <span class="accent">Mon Jul 6 2026, 13:43 MST</span>. Sources checked: <span class="accent">forum.derivative.ca (latest.json + Jobs &amp; Opportunities category), derivative.ca/job-board, Interactive &amp; Immersive HQ jobs, Hovercraft (Greenhouse careers), Immerse Studio (via derivative.ca), Kizuna Media (via derivative.ca), Marshmallow Laser Feast Jobs Board (JS-locked again this run, so the MLF entry carries over verbatim), AIART2026 / IEEE ICME, AV Magazine, EDMTunes, Notch, derivative.ca community tutorials, and general web search</span>.<br>
-    VIBRAIZE DAILY — built for Malachi / Vibraize Visuals.
+    Generated <span class="accent">Mon Jul 06 2026, 15:50 MST</span>. Sources: <span class="accent">City of Awe, Creative Tech News, Derivative Job Board, Derivative Showcase, Generative Media Club, Interactive Immersive Blog, Live Design News, MA Lighting News, Neuro.Studio - The Synapse, OnInOff News, Prosthetic Knowledge, Resolume Blog, Waxy, vvvv</span>.<br>
+    VIBRAIZE DAILY — built for Malachi / Vibraize Visuals. Auto-updates from RSS feeds.
   </div>
 
 </div>
