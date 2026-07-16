@@ -1,7 +1,7 @@
 name: Build Site
 
-# Rebuilds index.html from the RSS feeds and commits it, so GitHub Pages
-# serves a fresh page. Runs about every 20 minutes, plus on-demand.
+# Rebuilds index.html from the feeds/scrapers and commits it, so GitHub Pages
+# (Deploy from a branch -> main) serves a fresh page. Runs ~every 20 min + on demand.
 on:
   schedule:
     - cron: "*/20 * * * *"
@@ -11,8 +11,7 @@ on:
 permissions:
   contents: write
 
-# If a run is still going when the next is due, let the newer one wait
-# rather than overlap.
+# Don't let two Build Site runs overlap.
 concurrency:
   group: build-site
   cancel-in-progress: false
@@ -29,8 +28,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Self-contained install — no requirements.txt file needed in the repo.
       - name: Install dependencies
-        run: pip install -r requirements.txt feedparser requests beautifulsoup4
+        run: pip install feedparser requests beautifulsoup4
 
       - name: Build index.html
         run: python build_site.py
