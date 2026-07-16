@@ -23,10 +23,11 @@ import re
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
 
 import feedparser
 import requests
+from bs4 import BeautifulSoup
 
 # ----------------------------------------------------------------------------
 # CONFIG
@@ -35,8 +36,8 @@ BASE_DIR = Path(__file__).parent
 CONFIG_PATH = BASE_DIR / "feeds.json"
 OUTPUT_PATH = BASE_DIR / "index.html"
 
-NEWS_LIMIT = 20          # how many news stories to list down the page
-JOBS_LIMIT = 5           # how many job listings to show
+NEWS_LIMIT = 20          # how many news stories to list down the page (news column)
+JOBS_LIMIT = 20          # how many job listings to show (jobs column)
 FETCH_TIMEOUT = 20       # seconds per feed
 SUMMARY_CHARS = 150      # one-line summary cap
 
@@ -63,6 +64,52 @@ AZ_HINTS = (
     "chandler", "gilbert", "glendale", "prescott", "flagstaff", "tucson",
 )
 
+# Titles that indicate a feed is returning blog/demo posts instead of real job
+# listings — dropped from the jobs column. Extend as needed, or add per-feed
+# "exclude_keywords" in feeds.json.
+DEFAULT_JOB_EXCLUDE = (
+    "hello world", "attract sales and profits", "5 tips for your job interviews",
+    "an overworked newspaper editor", "the best account providers",
+    "lorem ipsum", "sample page",
+)
+
+# link text that is never a real article/job title (nav, pagination, CTAs)
+SKIP_LINK_TEXT = {"read more", "next", "previous", "load more", "load more news",
+                  "see all", "#", "»", "…", "view", "learn more"}
+
+_MONTHS = {m: i + 1 for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"])}
+
+
+def parse_date(text):
+    """Best-effort date parsing from free text found near an article link."""
+    if not text:
+        return None
+    # "Jul 10, 2026" / "April 29, 2026" / "Jun 24th 2026"
+    m = re.search(r"\b([A-Za-z]{3,9})\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})\b", text)
+    if m:
+        mo = _MONTHS.get(m.group(1)[:3].lower())
+        if mo:
+            try:
+                return datetime(int(m.group(3)), mo, int(m.group(2)), tzinfo=timezone.utc)
+            except ValueError:
+                pass
+    # "15-07-2026" (DD-MM-YYYY)
+    m = re.search(r"\b(\d{1,2})-(\d{1,2})-(\d{4})\b", text)
+    if m:
+        try:
+            return datetime(int(m.group(3)), int(m.group(2)), int(m.group(1)), tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    # "2026-07-15" (ISO-ish)
+    m = re.search(r"\b(\d{4})-(\d{1,2})-(\d{1,2})\b", text)
+    if m:
+        try:
+            return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    return None
+
 
 # ----------------------------------------------------------------------------
 # FETCH + PARSE
@@ -87,6 +134,168 @@ def fetch(url):
         except Exception as e2:
             print(f"  [!] fallback failed: {e2}")
             return None
+
+
+def rss_entries(url):
+    """Normalized items from an RSS/Atom feed."""
+    parsed = fetch(url)
+    if not parsed or not parsed.entries:
+        return []
+    out = []
+    for e in parsed.entries:
+        link = e.get("link", "")
+        if not link:
+            continue
+        out.append({
+            "title": e.get("title", "Untitled"),
+            "link": link,
+            "summary": clean_text(e.get("summary", "") or e.get("description", "")),
+            "dt": entry_datetime(e),
+            "image": entry_image(e),
+        })
+    return out
+
+
+def scrape_entries(feed):
+    """Normalized items scraped from a normal web page (no RSS needed).
+
+    feeds.json entry shape:
+      {
+        "name": "...", "type": "scrape", "category": "jobs"|"news",
+        "url": "https://site/page",
+        "scrape": {
+          "item": "li.job_listing",     # CSS selector for each row (optional)
+          "title": "h3",                 # within item (optional; falls back to heading/link text)
+          "company": ".company",         # optional -> folded into summary line
+          "location": ".location",       # optional -> folded into summary line
+          "summary": "p.excerpt",        # optional -> folded into summary line
+          "link_contains": "/job/"       # used for the item's link, and as a fallback
+        }
+      }
+    If "item" finds nothing, falls back to every <a> whose href contains
+    link_contains.
+    """
+    url = feed.get("url", "")
+    conf = feed.get("scrape", {}) or {}
+    link_contains = conf.get("link_contains", "")
+    try:
+        resp = requests.get(url, timeout=FETCH_TIMEOUT, headers={"User-Agent": USER_AGENT})
+        resp.raise_for_status()
+        soup = BeautifulSoup(resp.text, "html.parser")
+    except Exception as e:
+        print(f"  [!] scrape failed: {url} -> {e}")
+        return []
+
+    def node_to_item(node):
+        # link
+        a = node.select_one(conf["link"]) if conf.get("link") else None
+        if a is None:
+            a = node if getattr(node, "name", None) == "a" else node.find("a", href=True)
+        if not a or not a.get("href"):
+            return None
+        href = urljoin(url, a.get("href"))
+        # title
+        title_el = node.select_one(conf["title"]) if conf.get("title") else None
+        if title_el is None:
+            title_el = node.find(["h1", "h2", "h3", "h4"])
+        title = (title_el.get_text(" ", strip=True) if title_el
+                 else a.get_text(" ", strip=True)) or "Untitled"
+        # summary from optional company/location/summary selectors
+        parts = []
+        for sel in ("company", "location", "summary"):
+            if conf.get(sel):
+                el = node.select_one(conf[sel])
+                if el:
+                    parts.append(el.get_text(" ", strip=True))
+        summary = clean_text(" · ".join(p for p in parts if p))
+        # image
+        img = node.find("img")
+        image = urljoin(url, img.get("src")) if img and img.get("src") else None
+        # date from <time datetime="...">
+        dt = None
+        t = node.find("time")
+        if t and t.get("datetime"):
+            try:
+                dt = datetime.fromisoformat(t["datetime"].replace("Z", "+00:00"))
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+            except Exception:
+                pass
+        return {"title": title, "link": href, "summary": summary, "dt": dt, "image": image}
+
+    out = []
+    nodes = soup.select(conf["item"]) if conf.get("item") else []
+    if nodes:
+        for n in nodes:
+            it = node_to_item(n)
+            if it:
+                out.append(it)
+    elif link_contains:
+        # Group all anchors that point at the same article URL (a card often has
+        # an image link + a headline link + a "read more" link to one article).
+        groups = {}
+        order = []
+        for a in soup.select(f'a[href*="{link_contains}"]'):
+            href = urljoin(url, a.get("href", ""))
+            # require a real slug after the pattern (skip the index page + ?page= pagination)
+            after = href.split(link_contains, 1)[1] if link_contains in href else ""
+            if not after or after[0] in "?#":
+                continue
+            if href not in groups:
+                groups[href] = []
+                order.append(href)
+            groups[href].append(a)
+
+        for href in order:
+            anchors = groups[href]
+            # title = the longest anchor text (headline beats "read more"/image alt)
+            title = ""
+            for a in anchors:
+                t = a.get_text(" ", strip=True)
+                if len(t) > len(title):
+                    title = t
+            if not title:
+                for a in anchors:
+                    im = a.find("img")
+                    if im and im.get("alt"):
+                        title = im["alt"].strip()
+                        break
+            if not title or title.lower() in SKIP_LINK_TEXT:
+                continue
+            # image: prefer one inside a group anchor; else climb to the card container
+            image = None
+            for a in anchors:
+                im = a.find("img")
+                if im and im.get("src"):
+                    image = urljoin(url, im["src"])
+                    break
+            container = None
+            node = anchors[0]
+            for _ in range(4):
+                node = node.parent
+                if node is None:
+                    break
+                if node.find("img") or parse_date(node.get_text(" ", strip=True)):
+                    container = node
+                    break
+            if image is None and container is not None:
+                im = container.find("img")
+                if im and im.get("src"):
+                    image = urljoin(url, im["src"])
+            # date from the card container text
+            dsrc = container.get_text(" ", strip=True) if container is not None \
+                else " ".join(a.get_text(" ", strip=True) for a in anchors)
+            out.append({"title": title, "link": href, "summary": "",
+                        "dt": parse_date(dsrc), "image": image})
+    print(f"  -> scraped {len(out)} items")
+    return out
+
+
+def feed_entries(feed):
+    """Return normalized entries for a feed, whether RSS or scraped."""
+    if feed.get("type") == "scrape":
+        return scrape_entries(feed)
+    return rss_entries(feed.get("url", ""))
 
 
 def entry_datetime(entry):
@@ -166,25 +375,35 @@ def collect(feeds):
         name, url = feed.get("name", "Feed"), feed.get("url", "")
         if not url:
             continue
-        print(f"Fetching: {name}")
-        parsed = fetch(url)
-        if not parsed or not parsed.entries:
+        kind = "scrape" if feed.get("type") == "scrape" else "rss"
+        print(f"Fetching ({kind}): {name}")
+        entries = feed_entries(feed)
+        if not entries:
             continue
         job_feed = is_job_feed(feed)
-        for entry in parsed.entries:
-            link = entry.get("link", "")
+        # exclude keywords: per-feed, plus a default junk filter for job feeds
+        excludes = [k.lower() for k in feed.get("exclude_keywords", [])]
+        if job_feed:
+            excludes += list(DEFAULT_JOB_EXCLUDE)
+        for e in entries:
+            link = e.get("link", "")
             if not link or link in seen_links:
                 continue
+            title = e.get("title", "Untitled")
+            summary = e.get("summary", "")
+            if excludes:
+                blob = (title + " " + summary).lower()
+                if any(kw in blob for kw in excludes):
+                    continue
             seen_links.add(link)
-            item = {
-                "title": entry.get("title", "Untitled"),
+            (jobs if job_feed else news).append({
+                "title": title,
                 "link": link,
-                "summary": clean_text(entry.get("summary", "") or entry.get("description", "")),
-                "dt": entry_datetime(entry),
+                "summary": summary,
+                "dt": e.get("dt"),
                 "source": name,
-                "image": entry_image(entry),
-            }
-            (jobs if job_feed else news).append(item)
+                "image": e.get("image"),
+            })
             used_sources.add(name)
 
     return jobs, news, used_sources
@@ -355,7 +574,7 @@ PAGE = r"""<!DOCTYPE html>
     padding-bottom:60px;
   }
 
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+  .wrap{max-width:1680px;margin:0 auto;padding:0 28px;}
 
   /* ===== MASTHEAD ===== */
   .masthead-bar{
@@ -464,6 +683,16 @@ PAGE = r"""<!DOCTYPE html>
   .c-news .tab .dot-icon{background:var(--mint);box-shadow:0 0 8px var(--mint);}
   .c-news .section-body{border-color:var(--mint);}
 
+  /* ===== TWO-COLUMN LAYOUT (desktop) ===== */
+  .columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:34px;
+    align-items:start;
+    margin-top:22px;
+  }
+  .columns .section{margin-top:0;}
+
   /* ===== ITEMS ===== */
   .item{
     padding:14px 4px;
@@ -568,6 +797,12 @@ PAGE = r"""<!DOCTYPE html>
   }
   .footer .accent{color:var(--steel);}
 
+  /* stack into a single column on tablet / mobile */
+  @media (max-width:860px){
+    .columns{grid-template-columns:1fr;gap:0;}
+    .columns .section{margin-top:34px;}
+  }
+
   @media (max-width:480px){
     .masthead-title{font-size:32px;}
     .item-title{font-size:14.5px;}
@@ -594,24 +829,28 @@ PAGE = r"""<!DOCTYPE html>
     {{TICKER}}
   </div>
 
-  <!-- SECTION: JOB LISTINGS -->
-  <div class="section c-extjobs">
-    <div class="tab"><span class="dot-icon"></span>Job Listings — Creative Technologist</div>
-    <div class="section-body">
+  <div class="columns">
+
+    <!-- SECTION: JOB LISTINGS -->
+    <div class="section c-news">
+      <div class="tab"><span class="dot-icon"></span>Job Listings — Creative Technologist</div>
+      <div class="section-body">
 
 {{JOBS}}
 
+      </div>
     </div>
-  </div>
 
-  <!-- SECTION: NEWS FEED -->
-  <div class="section c-news">
-    <div class="tab"><span class="dot-icon"></span>Creative Tech News — Latest {{NEWS_COUNT}}</div>
-    <div class="section-body">
+    <!-- SECTION: NEWS FEED -->
+    <div class="section c-news">
+      <div class="tab"><span class="dot-icon"></span>Creative Tech News — Latest {{NEWS_COUNT}}</div>
+      <div class="section-body">
 
 {{NEWS}}
 
+      </div>
     </div>
+
   </div>
 
   <div class="footer">
