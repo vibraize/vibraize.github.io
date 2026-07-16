@@ -31,6 +31,7 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+        run: pip install feedparser requests beautifulsoup4
 
       - name: Build index.html
         run: python build_site.py
