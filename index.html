@@ -40,7 +40,7 @@
     padding-bottom:60px;
   }
 
-  .wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+  .wrap{max-width:1680px;margin:0 auto;padding:0 28px;}
 
   /* ===== MASTHEAD ===== */
   .masthead-bar{
@@ -149,6 +149,16 @@
   .c-news .tab .dot-icon{background:var(--mint);box-shadow:0 0 8px var(--mint);}
   .c-news .section-body{border-color:var(--mint);}
 
+  /* ===== TWO-COLUMN LAYOUT (desktop) ===== */
+  .columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:34px;
+    align-items:start;
+    margin-top:22px;
+  }
+  .columns .section{margin-top:0;}
+
   /* ===== ITEMS ===== */
   .item{
     padding:14px 4px;
@@ -253,6 +263,12 @@
   }
   .footer .accent{color:var(--steel);}
 
+  /* stack into a single column on tablet / mobile */
+  @media (max-width:860px){
+    .columns{grid-template-columns:1fr;gap:0;}
+    .columns .section{margin-top:34px;}
+  }
+
   @media (max-width:480px){
     .masthead-title{font-size:32px;}
     .item-title{font-size:14.5px;}
@@ -266,7 +282,7 @@
   <div class="masthead-bar">
     <div class="masthead-top">
       <span><span class="blink">●</span> LIVE FEED</span>
-      <span id="datetime">THU 07.16.26 — 11:58 MST</span>
+      <span id="datetime">THU 07.16.26 — 13:22 MST</span>
     </div>
     <div class="masthead-title">VIBRAIZE <span class="accent">DAILY</span></div>
     <div class="masthead-sub">
@@ -276,119 +292,203 @@
   </div>
 
   <div class="ticker">
-    <b>TOP STORY —</b> Hack reveals Suno scraped YouTube, Deezer, Genius, and more <span style="color:var(--text-dim)">(via Waxy)</span>
+    <b>TOP STORY —</b> vvvvhat happened in June 2026 <span style="color:var(--text-dim)">(via vvvv)</span>
   </div>
 
-  <!-- SECTION: JOB LISTINGS -->
-  <div class="section c-extjobs">
-    <div class="tab"><span class="dot-icon"></span>Job Listings — Creative Technologist</div>
-    <div class="section-body">
+  <div class="columns">
 
-      <div class="empty-state">No qualifying job listings in the feeds right now.</div>
+    <!-- SECTION: JOB LISTINGS -->
+    <div class="section c-news">
+      <div class="tab"><span class="dot-icon"></span>Job Listings — Creative Technologist</div>
+      <div class="section-body">
 
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/lecturerassociate-lecturer-digital-media/75016">Lecturer/Associate Lecturer, Digital Media</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/lecturerassociate-lecturer-digital-media/75016">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/senior-vfx-producer/">Senior VFX Producer</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">Black Kite Studios · London, UK</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/senior-vfx-producer/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/sessional-instructor-shader-art/">Sessional Instructor: Shader Art</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">OCAD University · Toronto, ON</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/sessional-instructor-shader-art/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/exhibit-design-technologist-2/">Exhibit Design Technologist</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">Marbles Kids Museum · Raleigh, NC</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/exhibit-design-technologist-2/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/senior-creative-technologist-3/">Senior Creative Technologist</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">WPP Production · New York, NY</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/senior-creative-technologist-3/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/dome-tech-operator-media-server-technician/">Dome Tech Operator / Media Server Technician</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">The Domes · San Jose, CA</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/dome-tech-operator-media-server-technician/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/interactive-crew-member-2/">Interactive Crew Member</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">Atlas9 · Kansas City, KS</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/interactive-crew-member-2/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/integrated-tech-specialist/">Integrated Tech Specialist</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">Trigger House · Portsmouth, NH</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/integrated-tech-specialist/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/touchdesigner-developer-41/">TouchDesigner Developer</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">WHITEvoid · Berlin, Germany</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/touchdesigner-developer-41/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/touchdesigner-developer-mfd/74986">TouchDesigner Developer (m/f/d)</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/touchdesigner-developer-mfd/74986">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/simulator-installation-lead/">Simulator Installation Lead</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">Batbox · Dallas, TX</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/simulator-installation-lead/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://jobs.interactiveimmersive.io/job/resident-creative-merlin/">Resident Creative – Merlin</a>
+          <span class="item-meta">Interactive &amp; Immersive HQ Jobs</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Interactive &amp; Immersive HQ Jobs</span></div>
+        <div class="item-summary">RWS Creative · Milton Keynes, UK</div>
+        <a class="item-link" href="https://jobs.interactiveimmersive.io/job/resident-creative-merlin/">jobs.interactiveimmersive.io</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/touchdesigner-developer-position/74897">TouchDesigner Developer Position</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/touchdesigner-developer-position/74897">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/touchdesigner-and-led-wall-trouble-shooting-near-houston/74890">Touchdesigner and led wall trouble shooting near Houston</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/touchdesigner-and-led-wall-trouble-shooting-near-houston/74890">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/multidisciplinary-visual-artist-3d-animation-live-visuals-contract-freelance/74804">Multidisciplinary Visual Artist - 3D, Animation &amp; Live Visuals - Contract / Freelance</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/multidisciplinary-visual-artist-3d-animation-live-visuals-contract-freelance/74804">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/el-perro-fan-theories-live/74652">El Perro &quot;Fan Theories&quot; Live</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/el-perro-fan-theories-live/74652">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/generative-motion-system-styling-brand/74605">Generative Motion System for Styling brand</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/generative-motion-system-styling-brand/74605">derivative.ca</a>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <a class="item-title" href="https://derivative.ca/job-post/touchdesigner-programmeroperator-france/74504">TOUCHDESIGNER PROGRAMMER/OPERATOR IN FRANCE</a>
+          <span class="item-meta">Derivative Job Board</span>
+        </div>
+        <div class="item-tags"><span class="tag fit">Derivative Job Board</span></div>
+        
+        <a class="item-link" href="https://derivative.ca/job-post/touchdesigner-programmeroperator-france/74504">derivative.ca</a>
+      </div>
+
+      </div>
     </div>
-  </div>
 
-  <!-- SECTION: NEWS FEED -->
-  <div class="section c-news">
-    <div class="tab"><span class="dot-icon"></span>Creative Tech News — Latest 20</div>
-    <div class="section-body">
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.404media.co/hack-reveals-suno-ai-music-generator-scraped-youtube-deezer-and-genius/">Hack reveals Suno scraped YouTube, Deezer, Genius, and more</a>
-            <span class="item-meta">Waxy · 50M AGO</span>
-          </div>
-          <div class="item-summary">even if courts decide AI training is fair use, companies may still be liable for illicitly acquiring copyrighted works #</div>
-          <a class="item-link" href="https://www.404media.co/hack-reveals-suno-ai-music-generator-scraped-youtube-deezer-and-genius/">404media.co</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.youtube.com/watch?v=cH_K0u80tS0">Animator Zane Little tries to find the first smear frame in animation</a>
-            <span class="item-meta">Waxy · 57M AGO</span>
-          </div>
-          <div class="item-summary">his entertaining research found examples 30 years earlier than cited on Wikipedia , which was quickly updated #</div>
-          <a class="item-link" href="https://www.youtube.com/watch?v=cH_K0u80tS0">youtube.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.pigeonsandplanes.com/read/music-piracy-what-cd-oink-nine-inch-nails-streaming">The Lost Joy of Music Piracy</a>
-            <span class="item-meta">Waxy · 1H AGO</span>
-          </div>
-          <div class="item-summary">Pigeons &amp; Planes’ Eden DaSilva on the heyday of Oink’s Pink Palace and What.cd via Hacker News #</div>
-          <a class="item-link" href="https://www.pigeonsandplanes.com/read/music-piracy-what-cd-oink-nine-inch-nails-streaming">pigeonsandplanes.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.nytimes.com/2026/07/16/technology/ai-slop-books-biography-amazon.html?unlocked_article_code=1.yFA.z1KA.DrCnzeLK-QyO&amp;smid=url-share">Kashmir Hill tries to find her AI-generated slop biographer</a>
-            <span class="item-meta">Waxy · 1H AGO</span>
-          </div>
-          <div class="item-summary">she talked to one “author” who published 445 ChatGPT-authored books on Amazon via @kashhill #</div>
-          <a class="item-link" href="https://www.nytimes.com/2026/07/16/technology/ai-slop-books-biography-amazon.html?unlocked_article_code=1.yFA.z1KA.DrCnzeLK-QyO&amp;smid=url-share">nytimes.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.gamesindustry.biz/how-evil-trout-aims-to-turn-a-cult-free-game-into-a-steam-hit-again">How Evil Trout aims to turn a cult free game into a Steam hit again</a>
-            <span class="item-meta">Waxy · 1D AGO</span>
-          </div>
-          <div class="item-summary">The Incident at Galley House , the fully-voiced graphical adaption of the brilliant Type Help , is out now #</div>
-          <a class="item-link" href="https://www.gamesindustry.biz/how-evil-trout-aims-to-turn-a-cult-free-game-into-a-steam-hit-again">gamesindustry.biz</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://parakeet.co/blog/the-shape-of-apps/">The Shape of Apps</a>
-            <span class="item-meta">Waxy · 1D AGO</span>
-          </div>
-          <div class="item-summary">Louie Mantia on the history, limitations, and benefits of Apple’s squircle icons #</div>
-          <a class="item-link" href="https://parakeet.co/blog/the-shape-of-apps/">parakeet.co</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://clipart.studio/">clipart.studio</a>
-            <span class="item-meta">Waxy · 2D AGO</span>
-          </div>
-          <div class="item-summary">make and share collages from the Internet Archive’s magazine collection or upload your own PDF #</div>
-          <a class="item-link" href="https://clipart.studio/">clipart.studio</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://aim.cee.wtf/">Buddy List</a>
-            <span class="item-meta">Waxy · 2D AGO</span>
-          </div>
-          <div class="item-summary">an AIM-style buddy list of your active Bluesky mutuals, no login necessary #</div>
-          <a class="item-link" href="https://aim.cee.wtf/">aim.cee.wtf</a>
-        </div>
-      </div>
+    <!-- SECTION: NEWS FEED -->
+    <div class="section c-news">
+      <div class="tab"><span class="dot-icon"></span>Creative Tech News — Latest 20</div>
+      <div class="section-body">
 
       <div class="item news">
         <img class="item-thumb" src="https://vvvv.org/img/grey-thumb_hu_6edf8f701bd7df9f.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
@@ -406,119 +506,23 @@
         <div class="item-thumb placeholder"></div>
         <div class="item-body">
           <div class="item-head">
-            <a class="item-title" href="https://www.kamtape.com/">KamTape</a>
-            <span class="item-meta">Waxy · 4D AGO</span>
+            <a class="item-title" href="https://interactiveimmersive.io/blog/machine-learning/how-artists-are-using-ai-with-touchdesigner/">How Artists Are Using AI with TouchDesigner</a>
+            <span class="item-meta">Interactive Immersive Blog · 7D AGO</span>
           </div>
-          <div class="item-summary">parallel-universe video sharing community in the style of 2009-era YouTube via Web Curios #</div>
-          <a class="item-link" href="https://www.kamtape.com/">kamtape.com</a>
+          <div class="item-summary">Combining AI with TouchDesigner opens the door to extraordinary new creative possibilities. Let&#x27;s explore some remarkable artworks and installations…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/machine-learning/how-artists-are-using-ai-with-touchdesigner/">interactiveimmersive.io</a>
         </div>
       </div>
 
       <div class="item news">
-        <div class="item-thumb placeholder"></div>
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/06/chrome-capture-2026-06-25.gif" alt="" loading="lazy" referrerpolicy="no-referrer">
         <div class="item-body">
           <div class="item-head">
-            <a class="item-title" href="https://components.news/not-your-keys-not-your-songs-nina-protocol/">Not your keys, not your songs</a>
-            <span class="item-meta">Waxy · 4D AGO</span>
+            <a class="item-title" href="https://interactiveimmersive.io/blog/unreal-engine/whats-new-in-unreal-engine-5-8/">What’s New in Unreal Engine 5.8</a>
+            <span class="item-meta">Interactive Immersive Blog · 14D AGO</span>
           </div>
-          <div class="item-summary">fascinating postmortem of blockchain music startup Nina Protocol , which is shutting down this week via AUX #</div>
-          <a class="item-link" href="https://components.news/not-your-keys-not-your-songs-nina-protocol/">components.news</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.wired.com/story/inside-the-luddite-festival-harnessing-gen-zs-rage-against-big-tech/">Wired on NYC’s Summer of Ludd festival</a>
-            <span class="item-meta">Waxy · 4D AGO</span>
-          </div>
-          <div class="item-summary">run by anonymous organizers and promoted without social media, the whole thing sounded great #</div>
-          <a class="item-link" href="https://www.wired.com/story/inside-the-luddite-festival-harnessing-gen-zs-rage-against-big-tech/">wired.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://qr.jim.sh/">Jim’s QR Code Font</a>
-            <span class="item-meta">Waxy · 4D AGO</span>
-          </div>
-          <div class="item-summary">OpenType font that turns bracketed text into QR codes #</div>
-          <a class="item-link" href="https://qr.jim.sh/">qr.jim.sh</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.adweek.com/media/publishers-opt-out-google-search/">Publishers prepare to opt-out of Google search over AI training</a>
-            <span class="item-meta">Waxy · 6D AGO</span>
-          </div>
-          <div class="item-summary">I missed the news that Cloudflare will start blocking Googlebot by default on September 15 #</div>
-          <a class="item-link" href="https://www.adweek.com/media/publishers-opt-out-google-search/">adweek.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://aftermath.site/xbox-layoffs-july-2026/">Double Fine is independent once again as Xbox lays off 3,200</a>
-            <span class="item-meta">Waxy · 10D AGO</span>
-          </div>
-          <div class="item-summary">the best outcome for the studio, I hope we get another documentary out of it #</div>
-          <a class="item-link" href="https://aftermath.site/xbox-layoffs-july-2026/">aftermath.site</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://manuelmoreale.com/interview/andy-baio">People and Blogs interviewed me</a>
-            <span class="item-meta">Waxy · 11D AGO</span>
-          </div>
-          <div class="item-summary">thanks to Manu for asking me to be the second-to-last blogger in his interview series #</div>
-          <a class="item-link" href="https://manuelmoreale.com/interview/andy-baio">manuelmoreale.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.theverge.com/tech/959848/bittorrent-story-25-years-piracy">The Verge on 25 years of BitTorrent</a>
-            <span class="item-meta">Waxy · 11D AGO</span>
-          </div>
-          <div class="item-summary">seems like the company failed precisely because the protocol was so successful in achieving its goals #</div>
-          <a class="item-link" href="https://www.theverge.com/tech/959848/bittorrent-story-25-years-piracy">theverge.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.youtube.com/watch?v=bwIFDv5pHS0">Hank Green interviews Ze Frank</a>
-            <span class="item-meta">Waxy · 15D AGO</span>
-          </div>
-          <div class="item-summary">as a huge fan of The Show , I’ve been anxiously waiting for this episode of Hank’s new podcast #</div>
-          <a class="item-link" href="https://www.youtube.com/watch?v=bwIFDv5pHS0">youtube.com</a>
-        </div>
-      </div>
-
-      <div class="item news">
-        <div class="item-thumb placeholder"></div>
-        <div class="item-body">
-          <div class="item-head">
-            <a class="item-title" href="https://www.youtube.com/watch?v=XGWxJaZpDXo">Horrorfan1’s Guide to Horror</a>
-            <span class="item-meta">Waxy · 16D AGO</span>
-          </div>
-          <div class="item-summary">another brilliant guide to the movies by internet cinephile Neil Cicierega #</div>
-          <a class="item-link" href="https://www.youtube.com/watch?v=XGWxJaZpDXo">youtube.com</a>
+          <div class="item-summary">If you haven&#x27;t heard already, our favorite AAA real-time renderer just dropped a new update with all sorts of goodies. So I&#x27;m gonna go through some…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/unreal-engine/whats-new-in-unreal-engine-5-8/">interactiveimmersive.io</a>
         </div>
       </div>
 
@@ -534,11 +538,205 @@
         </div>
       </div>
 
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/05/POPs-Working-with-Points-TD-100-Series-1024x558.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/touchdesigner-lessons/touchdesigner-beginner-tricks-2026/">TouchDesigner Beginner Tricks (2026)</a>
+            <span class="item-meta">Interactive Immersive Blog · 21D AGO</span>
+          </div>
+          <div class="item-summary">We&#x27;re back with another update to our Beginner Tricks series! Let&#x27;s dive into some TouchDesigner beginner tips and tricks for 2026. The post…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/touchdesigner-lessons/touchdesigner-beginner-tricks-2026/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://generativemedia.club/wp-content/uploads/2026/06/The-Noise-Diary-TheNoiseDiary_008.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://generativemedia.club/blog/the-noise-diary/">Artist of The Week #39: The Noise Diary</a>
+            <span class="item-meta">Generative Media Club · 24D AGO</span>
+          </div>
+          <div class="item-summary">A piece has to resonate emotionally to me before anything else. It must communicate something beyond technique and continue to feel meaningful every…</div>
+          <a class="item-link" href="https://generativemedia.club/blog/the-noise-diary/">generativemedia.club</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://vvvv.org/blog/2026/35.-vvvv-worldwide-meetup/vvvvMeetup35-KeyVisual-Thumb_hu_e43b36025f556a47.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://vvvv.org/blog/2026/35.-vvvv-worldwide-meetup/">35. vvvv worldwide meetup</a>
+            <span class="item-meta">vvvv · 24D AGO</span>
+          </div>
+          <div class="item-summary">IRL and real-time!</div>
+          <a class="item-link" href="https://vvvv.org/blog/2026/35.-vvvv-worldwide-meetup/">vvvv.org</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/05/Screenshot-2026-05-05-104350-1024x441.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/glsl/common-glsl-mistakes-in-touchdesigner/">Common GLSL Mistakes in TouchDesigner</a>
+            <span class="item-meta">Interactive Immersive Blog · 28D AGO</span>
+          </div>
+          <div class="item-summary">Mastering GLSL requires a great deal of attention and a sharp eye for detail. In this article, we will take a look at some common GLSL mistakes in…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/glsl/common-glsl-mistakes-in-touchdesigner/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://generativemedia.club/wp-content/uploads/2026/06/vertex.shader-dandelion.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://generativemedia.club/blog/vertex-shader/">Artist of The Week #38: vertex.shader</a>
+            <span class="item-meta">Generative Media Club · 32D AGO</span>
+          </div>
+          <div class="item-summary">If it’s in your heart you just pour energy into making it real. Sacrifice everything else make it happen ARTIST BIO vertex.shader (Samir Ghosh) is a…</div>
+          <a class="item-link" href="https://generativemedia.club/blog/vertex-shader/">generativemedia.club</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/04/Screenshot-2026-04-29-141022.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/interactive-media/a-guide-to-unreal-engines-motion-design-system/">A Guide to Unreal Engine’s Motion Design System</a>
+            <span class="item-meta">Interactive Immersive Blog · 35D AGO</span>
+          </div>
+          <div class="item-summary">This post is for motion designers and installation/interactive artists evaluating Unreal Engine as part of their design pipeline. I&#x27;ll walk through…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/interactive-media/a-guide-to-unreal-engines-motion-design-system/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://generativemedia.club/wp-content/uploads/2026/06/gaudisketch-artifact-768x1024.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://generativemedia.club/blog/gaudisketch/">Artist of The Week #37: gaudisketch</a>
+            <span class="item-meta">Generative Media Club · 39D AGO</span>
+          </div>
+          <div class="item-summary">– Code Is Soul – – Code is Clay – – Code is Free – Mathematician, photographer and philosopher. ARTIST BIO gaudisketch comes from an unusual mix of…</div>
+          <a class="item-link" href="https://generativemedia.club/blog/gaudisketch/">generativemedia.club</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/03/image-1-1-1024x551.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/touchdesigner-3d/touchdesigner-and-houdini-integration/">TouchDesigner and Houdini Integration</a>
+            <span class="item-meta">Interactive Immersive Blog · 42D AGO</span>
+          </div>
+          <div class="item-summary">In this post we explore a workflow that allows us to integrate TouchDesigner and Houdini, by creating complex geometries and custom attributes in…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/touchdesigner-3d/touchdesigner-and-houdini-integration/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/05/image.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/touchdesigner-integrations/touchdesigner-unreal-engine-integration-workflows/">TouchDesigner Unreal Engine Integration Workflows</a>
+            <span class="item-meta">Interactive Immersive Blog · 49D AGO</span>
+          </div>
+          <div class="item-summary">Building on a previous blog where we went over all the different ways that we can connect TouchDesigner and Unreal Engine together, it&#x27;s worth…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/touchdesigner-integrations/touchdesigner-unreal-engine-integration-workflows/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/04/IMG_0947.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/touchdesigner-resources/2026-touchdesigner-community-tools/">2026 TouchDesigner Community Tools</a>
+            <span class="item-meta">Interactive Immersive Blog · 56D AGO</span>
+          </div>
+          <div class="item-summary">Every year on the Interactive &amp; Immersive HQ, we highlight the latest TouchDesigner community tools you should know about. Here’s our latest updated…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/touchdesigner-resources/2026-touchdesigner-community-tools/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://interactiveimmersive.io/wp-content/uploads/2026/05/Screenshot-2026-05-04-102534-1024x534.jpg" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/touchdesigner-operators-tricks/creative-uses-of-pops-in-touchdesigner/">Creative Uses of POPs in TouchDesigner</a>
+            <span class="item-meta">Interactive Immersive Blog · 63D AGO</span>
+          </div>
+          <div class="item-summary">Using POPs in TouchDesigner opens the door to exciting new techniques for visual generation and manipulation. Let&#x27;s explore some examples. The post…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/touchdesigner-operators-tricks/creative-uses-of-pops-in-touchdesigner/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://interactiveimmersive.io/blog/touchdesigner-resources/new-media-festivals-happening-in-2026/">New Media Festivals Happening in 2026</a>
+            <span class="item-meta">Interactive Immersive Blog · 70D AGO</span>
+          </div>
+          <div class="item-summary">Ever wonder why your friends don&#x27;t care about OSC as much as you? Or think, where are other people knee deep in getting a POP network as optimized as…</div>
+          <a class="item-link" href="https://interactiveimmersive.io/blog/touchdesigner-resources/new-media-festivals-happening-in-2026/">interactiveimmersive.io</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <div class="item-thumb placeholder"></div>
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://neuro.studio/blogs/synapse-online/rakjay-stops-by-to-discuss-the-importance-of-mcs-the-current-state-of-dubplate-culture-more">Rakjay Stops By To Discuss The Importance Of MC...</a>
+            <span class="item-meta">Neuro.Studio - The Synapse · 78D AGO</span>
+          </div>
+          
+          <a class="item-link" href="https://neuro.studio/blogs/synapse-online/rakjay-stops-by-to-discuss-the-importance-of-mcs-the-current-state-of-dubplate-culture-more">neuro.studio</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://vvvv.org/blog/2026/34.-vvvv-worldwide-meetup/vvvv-Meetup-34-Thumbnail_hu_8764a0ea9a64cf49.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://vvvv.org/blog/2026/34.-vvvv-worldwide-meetup/">34. vvvv worldwide meetup</a>
+            <span class="item-meta">vvvv · 81D AGO</span>
+          </div>
+          <div class="item-summary">IRL and real-time!</div>
+          <a class="item-link" href="https://vvvv.org/blog/2026/34.-vvvv-worldwide-meetup/">vvvv.org</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://vvvv.org/blog/2026/last-call-vvvv-beginner-class-summer-2026/ss26_vvvv_beginner-thumb_hu_aa9a68756ec44eb7.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://vvvv.org/blog/2026/last-call-vvvv-beginner-class-summer-2026/">Last Call: vvvv Beginner Class Summer 2026</a>
+            <span class="item-meta">vvvv · 87D AGO</span>
+          </div>
+          <div class="item-summary">Your entry point into the world of vvvv</div>
+          <a class="item-link" href="https://vvvv.org/blog/2026/last-call-vvvv-beginner-class-summer-2026/">vvvv.org</a>
+        </div>
+      </div>
+
+      <div class="item news">
+        <img class="item-thumb" src="https://vvvv.org/blog/2026/vvvv-intermediate-foundations-class-summer-2026/ss26_vvvv_intermediate-foundations-thumb_hu_59a8cdb2c1aa1be0.png" alt="" loading="lazy" referrerpolicy="no-referrer">
+        <div class="item-body">
+          <div class="item-head">
+            <a class="item-title" href="https://vvvv.org/blog/2026/vvvv-intermediate-foundations-class-summer-2026/">vvvv Intermediate Foundations Class Summer 2026</a>
+            <span class="item-meta">vvvv · 99D AGO</span>
+          </div>
+          <div class="item-summary">All you need to know about object-oriented patching in vvvv</div>
+          <a class="item-link" href="https://vvvv.org/blog/2026/vvvv-intermediate-foundations-class-summer-2026/">vvvv.org</a>
+        </div>
+      </div>
+
+      </div>
     </div>
+
   </div>
 
   <div class="footer">
-    Generated <span class="accent">Thu Jul 16 2026, 11:58 MST</span>. Sources: <span class="accent">Generative Media Club, Prosthetic Knowledge, Waxy, vvvv</span>.<br>
+    Generated <span class="accent">Thu Jul 16 2026, 13:22 MST</span>. Sources: <span class="accent">City of Awe, Creative Tech News, Derivative Job Board, Derivative Showcase, Generative Media Club, Interactive &amp; Immersive HQ Jobs, Interactive Immersive Blog, Live Design News, MA Lighting News, Neuro.Studio - The Synapse, Prosthetic Knowledge, Resolume Blog, vvvv</span>.<br>
     VIBRAIZE DAILY — built for Malachi / Vibraize Visuals. Auto-updates from RSS feeds.
   </div>
 
