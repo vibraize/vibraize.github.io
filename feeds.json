@@ -1,95 +1,62 @@
 {
-  "_comment": "SITE copy of feeds.json for the PUBLIC vibraize.github.io repo. The Discord webhook is intentionally NOT included here — never commit your webhook to a public repo. 'category':'jobs' feeds go into the Job Listings section; everything else is news.",
+  "_comment": "SITE copy of feeds.json for the PUBLIC vibraize.github.io repo. NO Discord webhook here. 'category':'jobs' -> Job Listings column; else news. 'type':'scrape' builds items from a normal web page via CSS selectors or a 'link_contains' URL pattern; feeds without 'type' are parsed as RSS/Atom.",
   "feeds": [
     {
+      "_note": "SCRAPED from the Derivative job board page.",
       "name": "Derivative Job Board",
-      "url": "https://rss.app/feeds/tqO2hisvEewEDxzq.xml",
+      "type": "scrape",
+      "url": "https://derivative.ca/job-board",
       "category": "jobs",
-      "enabled": true
+      "enabled": true,
+      "scrape": { "link_contains": "/job-post/" }
     },
     {
+      "_note": "SCRAPED from the I&I HQ job board (WP Job Manager).",
       "name": "Interactive & Immersive HQ Jobs",
-      "url": "https://jobs.interactiveimmersive.io/feed/",
+      "type": "scrape",
+      "url": "https://jobs.interactiveimmersive.io/jobs/",
       "category": "jobs",
-      "enabled": true
+      "enabled": true,
+      "scrape": { "item": "li.job_listing", "title": "h3", "company": ".company", "location": ".location", "link_contains": "/job/" }
+    },
+    { "name": "Prosthetic Knowledge", "url": "https://prostheticknowledge.tumblr.com/rss", "category": "news", "enabled": true },
+    {
+      "_note": "WordPress native feed (most reliable for this site).",
+      "name": "Interactive Immersive Blog", "url": "https://interactiveimmersive.io/blog/feed/", "category": "news", "enabled": true
     },
     {
-      "name": "Prosthetic Knowledge",
-      "url": "https://prostheticknowledge.tumblr.com/rss",
-      "category": "news",
-      "enabled": true
+      "name": "MA Lighting News", "type": "scrape", "url": "https://www.malighting.com/news/",
+      "category": "news", "enabled": true, "scrape": { "link_contains": "/news/article/" }
     },
     {
-      "name": "Waxy",
-      "url": "https://waxy.org/feed/",
-      "category": "news",
-      "enabled": true
+      "name": "Neuro.Studio - The Synapse", "type": "scrape", "url": "https://neuro.studio/blogs/synapse-online",
+      "category": "news", "enabled": true, "scrape": { "link_contains": "/blogs/synapse-online/" }
     },
     {
-      "name": "Interactive Immersive Blog",
-      "url": "https://rss.app/feeds/AlsmROle56NSTns9.xml",
-      "category": "news",
-      "enabled": true
+      "name": "City of Awe", "type": "scrape", "url": "https://illuminate.org/press/",
+      "category": "news", "enabled": true, "scrape": { "link_contains": "/press/" }
     },
     {
-      "name": "MA Lighting News",
-      "url": "https://rss.app/feeds/zAoQIZNxYuV2NdCl.xml",
-      "category": "news",
-      "enabled": true
+      "_note": "DISABLED per user - OnInOff feed inactive.",
+      "name": "OnInOff News", "url": "https://rss.app/feeds/5H8EsTS4MJX4Xvoa.xml", "category": "news", "enabled": false
     },
     {
-      "name": "Neuro.Studio - The Synapse",
-      "url": "https://rss.app/feeds/GePDveYZfPZLR7hb.xml",
-      "category": "news",
-      "enabled": true
+      "name": "Derivative Showcase", "type": "scrape", "url": "https://derivative.ca/showcase",
+      "category": "news", "enabled": true, "scrape": { "link_contains": "/community-post/" }
     },
     {
-      "name": "City of Awe",
-      "url": "https://rss.app/feeds/QvL3ksS1EOkSyLWP.xml",
-      "category": "news",
-      "enabled": true
+      "name": "Resolume Blog", "type": "scrape", "url": "https://resolume.com/blog",
+      "category": "news", "enabled": true, "scrape": { "link_contains": "/blog/" }
+    },
+    { "name": "Generative Media Club", "url": "https://generativemedia.club/feed/", "category": "news", "enabled": true },
+    { "name": "vvvv", "url": "https://vvvv.org/community/index.xml", "category": "news", "enabled": true },
+    {
+      "name": "Creative Tech News", "type": "scrape", "url": "https://www.creative.tech/",
+      "category": "news", "enabled": true, "scrape": { "link_contains": "/post/" }
     },
     {
-      "name": "OnInOff News",
-      "url": "https://rss.app/feeds/5H8EsTS4MJX4Xvoa.xml",
-      "category": "news",
-      "enabled": true
-    },
-    {
-      "name": "Derivative Showcase",
-      "url": "https://rss.app/feeds/dsj1HMgnqpJ7Yc54.xml",
-      "category": "news",
-      "enabled": true
-    },
-    {
-      "name": "Resolume Blog",
-      "url": "https://rss.app/feeds/vxyBK7PrF1i7oe9O.xml",
-      "category": "news",
-      "enabled": true
-    },
-    {
-      "name": "Generative Media Club",
-      "url": "https://generativemedia.club/feed/",
-      "category": "news",
-      "enabled": true
-    },
-    {
-      "name": "vvvv",
-      "url": "https://vvvv.org/community/index.xml",
-      "category": "news",
-      "enabled": true
-    },
-    {
-      "name": "Creative Tech News",
-      "url": "https://rss.app/feeds/QARCnFROSwFytwRJ.xml",
-      "category": "news",
-      "enabled": true
-    },
-    {
-      "name": "Live Design News",
-      "url": "https://rss.app/feeds/ttP0DcVBdObWaWMk.xml",
-      "category": "news",
-      "enabled": true
+      "name": "Live Design News", "type": "scrape", "url": "https://www.livedesignonline.com/briefing-room",
+      "category": "news", "enabled": true, "scrape": { "link_contains": "/news/" }
     }
   ]
 }
