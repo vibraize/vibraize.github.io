@@ -30,8 +30,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
-        run: pip install feedparser requests beautifulsoup4
+        run: pip install -r requirements.txt feedparser requests beautifulsoup4
 
       - name: Build index.html
         run: python build_site.py
